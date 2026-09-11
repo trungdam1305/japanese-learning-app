@@ -30,6 +30,8 @@ dependencies {
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:$jjwtVersion")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:$jjwtVersion")
 
+	implementation("org.apache.poi:poi-ooxml:5.4.1")
+
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 
