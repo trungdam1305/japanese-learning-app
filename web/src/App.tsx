@@ -10,6 +10,7 @@ import StudentAccountsPage from './features/admin/accounts/pages/StudentAccounts
 import VocabularyManagementPage from './features/admin/vocabulary/pages/VocabularyManagementPage';
 import StudentProfilePage from './features/student/profile/pages/StudentProfilePage';
 import VocabularyLookupPage from './features/student/vocabulary/pages/VocabularyLookupPage';
+import FlashcardPage from './features/student/flashcard/pages/FlashcardPage';
 
 const queryClient = new QueryClient();
 
@@ -33,7 +34,8 @@ export default function App() {
 
               <Route element={<RequireRole role="STUDENT" />}>
                 <Route path="/student" element={<StudentLayout />}>
-                  <Route index element={<Navigate to="profile" replace />} />
+                  <Route index element={<Navigate to="flashcards" replace />} />
+                  <Route path="flashcards" element={<FlashcardPage />} />
                   <Route path="vocabularies" element={<VocabularyLookupPage />} />
                   <Route path="profile" element={<StudentProfilePage />} />
                 </Route>

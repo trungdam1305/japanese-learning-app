@@ -10,7 +10,7 @@ export default function StudentLayout() {
   const user = useAuthStore((state) => state.user);
   const clearAuth = useAuthStore((state) => state.clearAuth);
 
-  const selectedKey = location.pathname.split('/')[2] ?? 'profile';
+  const selectedKey = location.pathname.split('/')[2] ?? 'flashcards';
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -21,6 +21,7 @@ export default function StudentLayout() {
           mode="inline"
           selectedKeys={[selectedKey]}
           items={[
+            { key: 'flashcards', label: 'Học Flashcard' },
             { key: 'vocabularies', label: 'Tra cứu từ vựng' },
             { key: 'profile', label: 'Hồ sơ cá nhân' },
           ]}
