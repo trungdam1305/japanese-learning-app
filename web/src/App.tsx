@@ -7,7 +7,9 @@ import StudentLayout from './app/layouts/StudentLayout';
 import LoginPage from './features/auth/pages/LoginPage';
 import RegisterPage from './features/auth/pages/RegisterPage';
 import StudentAccountsPage from './features/admin/accounts/pages/StudentAccountsPage';
+import VocabularyManagementPage from './features/admin/vocabulary/pages/VocabularyManagementPage';
 import StudentProfilePage from './features/student/profile/pages/StudentProfilePage';
+import VocabularyLookupPage from './features/student/vocabulary/pages/VocabularyLookupPage';
 
 const queryClient = new QueryClient();
 
@@ -25,12 +27,14 @@ export default function App() {
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<Navigate to="accounts" replace />} />
                   <Route path="accounts" element={<StudentAccountsPage />} />
+                  <Route path="vocabularies" element={<VocabularyManagementPage />} />
                 </Route>
               </Route>
 
               <Route element={<RequireRole role="STUDENT" />}>
                 <Route path="/student" element={<StudentLayout />}>
                   <Route index element={<Navigate to="profile" replace />} />
+                  <Route path="vocabularies" element={<VocabularyLookupPage />} />
                   <Route path="profile" element={<StudentProfilePage />} />
                 </Route>
               </Route>

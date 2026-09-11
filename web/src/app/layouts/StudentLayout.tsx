@@ -20,7 +20,10 @@ export default function StudentLayout() {
           theme="dark"
           mode="inline"
           selectedKeys={[selectedKey]}
-          items={[{ key: 'profile', label: 'Hồ sơ cá nhân' }]}
+          items={[
+            { key: 'vocabularies', label: 'Tra cứu từ vựng' },
+            { key: 'profile', label: 'Hồ sơ cá nhân' },
+          ]}
           onClick={({ key }) => navigate(`/student/${key}`)}
         />
       </Sider>

@@ -20,7 +20,10 @@ export default function AdminLayout() {
           theme="dark"
           mode="inline"
           selectedKeys={[selectedKey]}
-          items={[{ key: 'accounts', label: 'Tài khoản học viên' }]}
+          items={[
+            { key: 'accounts', label: 'Tài khoản học viên' },
+            { key: 'vocabularies', label: 'Từ vựng & Kanji' },
+          ]}
           onClick={({ key }) => navigate(`/admin/${key}`)}
         />
       </Sider>
