@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    image: 'mongo:7'
+    environment:
+      - 'MONGO_INITDB_DATABASE=japanese_learning'
+    ports:
+      - '27017:27017'
+    volumes:
+      - 'mongodb_data:/data/db'
+
+volumes:
+  mongodb_data:
