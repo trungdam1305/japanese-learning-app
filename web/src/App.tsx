@@ -3,9 +3,11 @@ import { App as AntdApp, ConfigProvider } from 'antd';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import RequireRole from './app/RequireRole';
 import AdminLayout from './app/layouts/AdminLayout';
+import StudentLayout from './app/layouts/StudentLayout';
 import LoginPage from './features/auth/pages/LoginPage';
 import RegisterPage from './features/auth/pages/RegisterPage';
 import StudentAccountsPage from './features/admin/accounts/pages/StudentAccountsPage';
+import StudentProfilePage from './features/student/profile/pages/StudentProfilePage';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,13 @@ export default function App() {
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<Navigate to="accounts" replace />} />
                   <Route path="accounts" element={<StudentAccountsPage />} />
+                </Route>
+              </Route>
+
+              <Route element={<RequireRole role="STUDENT" />}>
+                <Route path="/student" element={<StudentLayout />}>
+                  <Route index element={<Navigate to="profile" replace />} />
+                  <Route path="profile" element={<StudentProfilePage />} />
                 </Route>
               </Route>
 
