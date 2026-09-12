@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Button, Input, Select, Space, Table, Tag, Typography } from 'antd';
 import { SoundOutlined } from '@ant-design/icons';
@@ -10,7 +11,8 @@ import type { Vocabulary } from '../../../admin/vocabulary/types';
 const PAGE_SIZE = 15;
 
 export default function VocabularyLookupPage() {
-  const [keyword, setKeyword] = useState('');
+  const [searchParams] = useSearchParams();
+  const [keyword, setKeyword] = useState(searchParams.get('q') ?? '');
   const [level, setLevel] = useState<JlptLevel | undefined>(undefined);
   const [page, setPage] = useState(0);
 
@@ -55,6 +57,7 @@ export default function VocabularyLookupPage() {
         <Input.Search
           placeholder="Nhập từ tiếng Nhật hoặc nghĩa tiếng Việt"
           allowClear
+          defaultValue={keyword}
           style={{ width: 320 }}
           onSearch={(value) => {
             setKeyword(value);
