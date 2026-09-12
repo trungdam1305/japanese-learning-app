@@ -24,6 +24,7 @@ export default function AdminLayout() {
             { key: 'accounts', label: 'Tài khoản học viên' },
             { key: 'vocabularies', label: 'Từ vựng & Kanji' },
             { key: 'questions', label: 'Ngân hàng câu hỏi' },
+            { key: 'exam-templates', label: 'Đề thi / Quiz' },
           ]}
           onClick={({ key }) => navigate(`/admin/${key}`)}
         />

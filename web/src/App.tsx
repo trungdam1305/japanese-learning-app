@@ -9,6 +9,7 @@ import RegisterPage from './features/auth/pages/RegisterPage';
 import StudentAccountsPage from './features/admin/accounts/pages/StudentAccountsPage';
 import VocabularyManagementPage from './features/admin/vocabulary/pages/VocabularyManagementPage';
 import QuestionManagementPage from './features/admin/questions/pages/QuestionManagementPage';
+import ExamTemplateManagementPage from './features/admin/examTemplates/pages/ExamTemplateManagementPage';
 import StudentProfilePage from './features/student/profile/pages/StudentProfilePage';
 import VocabularyLookupPage from './features/student/vocabulary/pages/VocabularyLookupPage';
 import FlashcardPage from './features/student/flashcard/pages/FlashcardPage';
@@ -31,6 +32,7 @@ export default function App() {
                   <Route path="accounts" element={<StudentAccountsPage />} />
                   <Route path="vocabularies" element={<VocabularyManagementPage />} />
                   <Route path="questions" element={<QuestionManagementPage />} />
+                  <Route path="exam-templates" element={<ExamTemplateManagementPage />} />
                 </Route>
               </Route>
 
