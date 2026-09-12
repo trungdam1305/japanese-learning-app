@@ -22,10 +22,13 @@ public class FlashcardService {
     private final VocabularyRepository vocabularyRepository;
     private final UserWordMetricRepository userWordMetricRepository;
 
+    /** studentId null = khách chưa đăng nhập, xem được thẻ nhưng không có trạng thái ghi nhớ cá nhân. */
     public FlashcardDeckResponse getDeck(String studentId, JlptLevel level) {
         List<Vocabulary> vocabularies = vocabularyRepository.findByLevelOrderByWordAsc(level);
-        Map<String, MemoryStatus> statusByVocabularyId = userWordMetricRepository.findByStudentId(studentId).stream()
-                .collect(Collectors.toMap(UserWordMetric::getVocabularyId, UserWordMetric::getStatus, (a, b) -> b));
+        Map<String, MemoryStatus> statusByVocabularyId = studentId == null
+                ? Map.of()
+                : userWordMetricRepository.findByStudentId(studentId).stream()
+                        .collect(Collectors.toMap(UserWordMetric::getVocabularyId, UserWordMetric::getStatus, (a, b) -> b));
 
         List<FlashcardItem> cards = vocabularies.stream()
                 .map(vocabulary -> FlashcardItem.of(vocabulary, statusByVocabularyId.get(vocabulary.getId())))

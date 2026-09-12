@@ -38,15 +38,23 @@ export default function StudentLayout() {
       </Sider>
       <Layout>
         <Header style={{ background: '#fff', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
-          <span>{user?.fullName}</span>
-          <Button
-            onClick={() => {
-              clearAuth();
-              navigate('/login');
-            }}
-          >
-            Đăng xuất
-          </Button>
+          {user ? (
+            <>
+              <span>{user.fullName}</span>
+              <Button
+                onClick={() => {
+                  clearAuth();
+                  navigate('/login');
+                }}
+              >
+                Đăng xuất
+              </Button>
+            </>
+          ) : (
+            <Button type="primary" onClick={() => navigate('/login')}>
+              Đăng nhập
+            </Button>
+          )}
         </Header>
         <Content style={{ margin: 24 }}>
           <Outlet />

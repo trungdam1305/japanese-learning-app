@@ -25,11 +25,13 @@ public class FlashcardController {
 
     private final FlashcardService flashcardService;
 
+    /** Công khai — học viên chưa đăng nhập vẫn xem/lật được thẻ, chỉ không lưu được tiến độ ghi nhớ. */
     @GetMapping
     public ApiResponse<FlashcardDeckResponse> getDeck(
             @AuthenticationPrincipal UserPrincipal principal,
             @RequestParam JlptLevel level) {
-        return ApiResponse.success(flashcardService.getDeck(principal.getId(), level));
+        String studentId = principal == null ? null : principal.getId();
+        return ApiResponse.success(flashcardService.getDeck(studentId, level));
     }
 
     @GetMapping("/progress")

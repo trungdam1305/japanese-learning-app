@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Button, Card, Empty, Progress, Radio, Space, Tag, Typography, message } from 'antd';
+import { Alert, Button, Card, Empty, Progress, Radio, Space, Tag, Typography, message } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { flashcardApi } from '../api/flashcardApi';
 import FlipCard from '../components/FlipCard';
 import { getErrorMessage } from '../../../../shared/api/errors';
+import { useAuthStore } from '../../../../shared/auth/authStore';
 import type { JlptLevel } from '../../../auth/types';
 import type { MemoryStatus } from '../types';
 
 export default function FlashcardPage() {
   const queryClient = useQueryClient();
+  const user = useAuthStore((state) => state.user);
   const [level, setLevel] = useState<JlptLevel>('N5');
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -37,6 +39,15 @@ export default function FlashcardPage() {
   const cards = deck?.cards ?? [];
   const current = cards[index];
 
+  const handleMark = (status: MemoryStatus) => {
+    if (!user) {
+      message.info('Đăng nhập để lưu tiến độ học Flashcard của bạn');
+      goNext();
+      return;
+    }
+    markMutation.mutate({ vocabularyId: current.vocabularyId, status });
+  };
+
   const goNext = () => {
     setFlipped(false);
     setIndex((prev) => (cards.length === 0 ? 0 : Math.min(prev + 1, cards.length - 1)));
@@ -50,6 +61,15 @@ export default function FlashcardPage() {
   return (
     <div>
       <Typography.Title level={3}>Học Flashcard</Typography.Title>
+
+      {!user && (
+        <Alert
+          style={{ marginBottom: 16 }}
+          type="info"
+          showIcon
+          message="Bạn đang xem ở chế độ khách. Đăng nhập để hệ thống lưu lại tiến độ Đã thuộc / Chưa thuộc của bạn."
+        />
+      )}
 
       <Space style={{ marginBottom: 16 }}>
         <Radio.Group
@@ -99,7 +119,7 @@ export default function FlashcardPage() {
               <Button
                 style={{ background: '#52c41a', color: '#fff' }}
                 loading={markMutation.isPending}
-                onClick={() => markMutation.mutate({ vocabularyId: current.vocabularyId, status: 'MASTERED' })}
+                onClick={() => handleMark('MASTERED')}
               >
                 Đã thuộc
               </Button>
@@ -107,7 +127,7 @@ export default function FlashcardPage() {
                 danger
                 type="primary"
                 loading={markMutation.isPending}
-                onClick={() => markMutation.mutate({ vocabularyId: current.vocabularyId, status: 'NOT_MASTERED' })}
+                onClick={() => handleMark('NOT_MASTERED')}
               >
                 Chưa thuộc
               </Button>

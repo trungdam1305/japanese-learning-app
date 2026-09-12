@@ -43,12 +43,15 @@ export default function App() {
                 </Route>
               </Route>
 
-              <Route element={<RequireRole role="STUDENT" />}>
-                <Route path="/student" element={<StudentLayout />}>
+              <Route path="/student" element={<StudentLayout />}>
+                {/* Miễn phí — xem được mà không cần đăng nhập */}
+                <Route path="flashcards" element={<FlashcardPage />} />
+                <Route path="vocabularies" element={<VocabularyLookupPage />} />
+
+                {/* Yêu cầu đăng nhập */}
+                <Route element={<RequireRole role="STUDENT" />}>
                   <Route index element={<Navigate to="dashboard" replace />} />
                   <Route path="dashboard" element={<DashboardPage />} />
-                  <Route path="flashcards" element={<FlashcardPage />} />
-                  <Route path="vocabularies" element={<VocabularyLookupPage />} />
                   <Route path="exams" element={<ExamListPage />} />
                   <Route path="exams/attempts/:attemptId/take" element={<ExamTakingPage />} />
                   <Route path="exams/attempts/:attemptId/result" element={<ExamResultPage />} />
