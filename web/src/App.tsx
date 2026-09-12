@@ -17,6 +17,7 @@ import ExamListPage from './features/student/exams/pages/ExamListPage';
 import ExamTakingPage from './features/student/exams/pages/ExamTakingPage';
 import ExamResultPage from './features/student/exams/pages/ExamResultPage';
 import ErrorNotebookPage from './features/student/exams/pages/ErrorNotebookPage';
+import DashboardPage from './features/student/dashboard/pages/DashboardPage';
 
 const queryClient = new QueryClient();
 
@@ -42,7 +43,8 @@ export default function App() {
 
               <Route element={<RequireRole role="STUDENT" />}>
                 <Route path="/student" element={<StudentLayout />}>
-                  <Route index element={<Navigate to="flashcards" replace />} />
+                  <Route index element={<Navigate to="dashboard" replace />} />
+                  <Route path="dashboard" element={<DashboardPage />} />
                   <Route path="flashcards" element={<FlashcardPage />} />
                   <Route path="vocabularies" element={<VocabularyLookupPage />} />
                   <Route path="exams" element={<ExamListPage />} />
