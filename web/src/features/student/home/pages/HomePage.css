@@ -1,0 +1,149 @@
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 64px 24px 56px;
+  border-radius: 24px;
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, #fff1e6 0%, #ffe0cc 45%, #ffd3b0 100%);
+  isolation: isolate;
+}
+
+.home-hero::before {
+  content: '学';
+  position: absolute;
+  top: -60px;
+  right: -20px;
+  font-size: 320px;
+  font-weight: 700;
+  color: rgba(212, 56, 13, 0.06);
+  line-height: 1;
+  z-index: -1;
+  user-select: none;
+}
+
+.home-hero::after {
+  content: '語';
+  position: absolute;
+  bottom: -80px;
+  left: -30px;
+  font-size: 260px;
+  font-weight: 700;
+  color: rgba(212, 56, 13, 0.05);
+  line-height: 1;
+  z-index: -1;
+  user-select: none;
+}
+
+.home-hero-content {
+  animation: home-fade-up 0.6s ease-out both;
+}
+
+.home-hero-title {
+  margin-bottom: 4px !important;
+  font-size: 42px !important;
+}
+
+.home-hero-search {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.home-hero-search .ant-input-affix-wrapper,
+.home-hero-search.ant-input-group-wrapper .ant-input {
+  border-radius: 999px !important;
+}
+
+.home-hero-search .ant-input-search-button {
+  border-radius: 0 999px 999px 0 !important;
+  height: 48px !important;
+}
+
+.home-hero-search .ant-input-affix-wrapper,
+.home-hero-search input.ant-input {
+  border-radius: 999px 0 0 999px !important;
+  height: 48px !important;
+}
+
+.home-stats {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.home-stat-chip {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(212, 56, 13, 0.15);
+  border-radius: 999px;
+  padding: 6px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ad2102;
+  backdrop-filter: blur(2px);
+}
+
+@keyframes home-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feature-card {
+  height: 100%;
+  border-radius: 16px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  animation: home-fade-up 0.5s ease-out both;
+}
+
+.feature-card:not(.feature-card-disabled):hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  border-color: transparent;
+}
+
+.feature-card-disabled {
+  cursor: default;
+}
+
+.feature-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.feature-card .ant-card-meta-title {
+  white-space: normal !important;
+  overflow: visible !important;
+}
+
+.feature-card-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.feature-arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  color: #d4380d;
+}
+
+.feature-card:not(.feature-card-disabled):hover .feature-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
