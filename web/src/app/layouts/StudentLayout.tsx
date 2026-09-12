@@ -10,18 +10,22 @@ export default function StudentLayout() {
   const user = useAuthStore((state) => state.user);
   const clearAuth = useAuthStore((state) => state.clearAuth);
 
-  const selectedKey = location.pathname.split('/')[2] ?? 'home';
+  const selectedKey = location.pathname.split('/')[2] ?? 'dashboard';
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider>
-        <div style={{ color: '#fff', padding: 16, fontWeight: 'bold' }}>日本語学習</div>
+        <div
+          style={{ color: '#fff', padding: 16, fontWeight: 'bold', cursor: 'pointer' }}
+          onClick={() => navigate('/')}
+        >
+          日本語学習
+        </div>
         <Menu
           theme="dark"
           mode="inline"
           selectedKeys={[selectedKey]}
           items={[
-            { key: 'home', label: 'Trang chủ' },
             { key: 'dashboard', label: 'Bảng điều khiển' },
             { key: 'flashcards', label: 'Học Flashcard' },
             { key: 'vocabularies', label: 'Tra cứu từ vựng' },

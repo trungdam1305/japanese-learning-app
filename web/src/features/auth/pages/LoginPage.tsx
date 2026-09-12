@@ -23,7 +23,7 @@ export default function LoginPage() {
           role: data.role,
         },
       });
-      navigate(data.role === 'ADMIN' ? '/admin' : '/student', { replace: true });
+      navigate(data.role === 'ADMIN' ? '/admin' : '/', { replace: true });
     },
     onError: (error) => {
       message.error(getErrorMessage(error, 'Đăng nhập thất bại'));

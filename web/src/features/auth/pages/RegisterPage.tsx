@@ -24,7 +24,7 @@ export default function RegisterPage() {
         },
       });
       message.success('Đăng ký thành công!');
-      navigate('/student', { replace: true });
+      navigate('/', { replace: true });
     },
     onError: (error) => {
       message.error(getErrorMessage(error, 'Đăng ký thất bại'));

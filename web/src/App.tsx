@@ -29,6 +29,7 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <Routes>
+              <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
 
@@ -44,8 +45,7 @@ export default function App() {
 
               <Route element={<RequireRole role="STUDENT" />}>
                 <Route path="/student" element={<StudentLayout />}>
-                  <Route index element={<Navigate to="home" replace />} />
-                  <Route path="home" element={<HomePage />} />
+                  <Route index element={<Navigate to="dashboard" replace />} />
                   <Route path="dashboard" element={<DashboardPage />} />
                   <Route path="flashcards" element={<FlashcardPage />} />
                   <Route path="vocabularies" element={<VocabularyLookupPage />} />
@@ -57,7 +57,7 @@ export default function App() {
                 </Route>
               </Route>
 
-              <Route path="*" element={<Navigate to="/login" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </BrowserRouter>
         </QueryClientProvider>
