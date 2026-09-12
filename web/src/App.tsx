@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import RequireRole from './app/RequireRole';
 import AdminLayout from './app/layouts/AdminLayout';
 import StudentLayout from './app/layouts/StudentLayout';
+import PublicLayout from './app/layouts/PublicLayout';
 import LoginPage from './features/auth/pages/LoginPage';
 import RegisterPage from './features/auth/pages/RegisterPage';
 import StudentAccountsPage from './features/admin/accounts/pages/StudentAccountsPage';
@@ -29,7 +30,12 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route element={<PublicLayout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/vocabularies" element={<VocabularyLookupPage />} />
+                <Route path="/flashcards" element={<FlashcardPage />} />
+              </Route>
+
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
 
@@ -43,13 +49,8 @@ export default function App() {
                 </Route>
               </Route>
 
-              <Route path="/student" element={<StudentLayout />}>
-                {/* Miễn phí — xem được mà không cần đăng nhập */}
-                <Route path="flashcards" element={<FlashcardPage />} />
-                <Route path="vocabularies" element={<VocabularyLookupPage />} />
-
-                {/* Yêu cầu đăng nhập */}
-                <Route element={<RequireRole role="STUDENT" />}>
+              <Route element={<RequireRole role="STUDENT" />}>
+                <Route path="/student" element={<StudentLayout />}>
                   <Route index element={<Navigate to="dashboard" replace />} />
                   <Route path="dashboard" element={<DashboardPage />} />
                   <Route path="exams" element={<ExamListPage />} />

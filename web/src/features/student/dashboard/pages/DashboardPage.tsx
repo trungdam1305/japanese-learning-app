@@ -68,7 +68,7 @@ export default function DashboardPage() {
                 dataSource={data.weakVocabulary}
                 renderItem={(item) => (
                   <List.Item
-                    onClick={() => navigate('/student/flashcards')}
+                    onClick={() => navigate('/flashcards')}
                     style={{ cursor: 'pointer' }}
                   >
                     <List.Item.Meta

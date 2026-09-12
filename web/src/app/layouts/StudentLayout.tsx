@@ -4,6 +4,9 @@ import { useAuthStore } from '../../shared/auth/authStore';
 
 const { Header, Sider, Content } = Layout;
 
+/** Các mục này sống ở URL gốc (trang riêng, công khai), không nằm trong /student/*. */
+const ROOT_LEVEL_KEYS = new Set(['flashcards', 'vocabularies']);
+
 export default function StudentLayout() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,28 +36,20 @@ export default function StudentLayout() {
             { key: 'error-notebook', label: 'Sổ tay lỗi sai' },
             { key: 'profile', label: 'Hồ sơ cá nhân' },
           ]}
-          onClick={({ key }) => navigate(`/student/${key}`)}
+          onClick={({ key }) => navigate(ROOT_LEVEL_KEYS.has(key) ? `/${key}` : `/student/${key}`)}
         />
       </Sider>
       <Layout>
         <Header style={{ background: '#fff', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
-          {user ? (
-            <>
-              <span>{user.fullName}</span>
-              <Button
-                onClick={() => {
-                  clearAuth();
-                  navigate('/login');
-                }}
-              >
-                Đăng xuất
-              </Button>
-            </>
-          ) : (
-            <Button type="primary" onClick={() => navigate('/login')}>
-              Đăng nhập
-            </Button>
-          )}
+          <span>{user?.fullName}</span>
+          <Button
+            onClick={() => {
+              clearAuth();
+              navigate('/login');
+            }}
+          >
+            Đăng xuất
+          </Button>
         </Header>
         <Content style={{ margin: 24 }}>
           <Outlet />
