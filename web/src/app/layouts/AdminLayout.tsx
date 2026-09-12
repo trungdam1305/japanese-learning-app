@@ -23,6 +23,7 @@ export default function AdminLayout() {
           items={[
             { key: 'accounts', label: 'Tài khoản học viên' },
             { key: 'vocabularies', label: 'Từ vựng & Kanji' },
+            { key: 'questions', label: 'Ngân hàng câu hỏi' },
           ]}
           onClick={({ key }) => navigate(`/admin/${key}`)}
         />
