@@ -13,6 +13,10 @@ import ExamTemplateManagementPage from './features/admin/examTemplates/pages/Exa
 import StudentProfilePage from './features/student/profile/pages/StudentProfilePage';
 import VocabularyLookupPage from './features/student/vocabulary/pages/VocabularyLookupPage';
 import FlashcardPage from './features/student/flashcard/pages/FlashcardPage';
+import ExamListPage from './features/student/exams/pages/ExamListPage';
+import ExamTakingPage from './features/student/exams/pages/ExamTakingPage';
+import ExamResultPage from './features/student/exams/pages/ExamResultPage';
+import ErrorNotebookPage from './features/student/exams/pages/ErrorNotebookPage';
 
 const queryClient = new QueryClient();
 
@@ -41,6 +45,10 @@ export default function App() {
                   <Route index element={<Navigate to="flashcards" replace />} />
                   <Route path="flashcards" element={<FlashcardPage />} />
                   <Route path="vocabularies" element={<VocabularyLookupPage />} />
+                  <Route path="exams" element={<ExamListPage />} />
+                  <Route path="exams/attempts/:attemptId/take" element={<ExamTakingPage />} />
+                  <Route path="exams/attempts/:attemptId/result" element={<ExamResultPage />} />
+                  <Route path="error-notebook" element={<ErrorNotebookPage />} />
                   <Route path="profile" element={<StudentProfilePage />} />
                 </Route>
               </Route>

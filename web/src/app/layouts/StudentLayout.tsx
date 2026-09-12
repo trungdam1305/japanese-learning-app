@@ -23,6 +23,8 @@ export default function StudentLayout() {
           items={[
             { key: 'flashcards', label: 'Học Flashcard' },
             { key: 'vocabularies', label: 'Tra cứu từ vựng' },
+            { key: 'exams', label: 'Đề thi / Quiz' },
+            { key: 'error-notebook', label: 'Sổ tay lỗi sai' },
             { key: 'profile', label: 'Hồ sơ cá nhân' },
           ]}
           onClick={({ key }) => navigate(`/student/${key}`)}
