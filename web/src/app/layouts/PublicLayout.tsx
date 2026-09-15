@@ -2,6 +2,8 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Button, Space, Typography } from 'antd';
 import { DashboardOutlined } from '@ant-design/icons';
 import { useAuthStore } from '../../shared/auth/authStore';
+import PublicFooter from './PublicFooter';
+import BackToTopButton from './BackToTopButton';
 
 export default function PublicLayout() {
   const navigate = useNavigate();
@@ -14,7 +16,7 @@ export default function PublicLayout() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f5f5' }}>
+    <div style={{ minHeight: '100vh', background: '#f5f5f5', display: 'flex', flexDirection: 'column' }}>
       <div
         style={{
           background: '#fff',
@@ -57,9 +59,12 @@ export default function PublicLayout() {
         )}
       </div>
 
-      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '32px 24px 48px' }}>
+      <div style={{ maxWidth: 1080, margin: '0 auto', padding: '32px 24px 48px', width: '100%', flex: 1 }}>
         <Outlet />
       </div>
+
+      <PublicFooter />
+      <BackToTopButton />
     </div>
   );
 }
